@@ -363,19 +363,21 @@ module.exports = exports = nano = function database_module(cfg) {
   * get_uuid(count1, count2, ... countn, callback);
   * get one or more ids from couchdb/_uuids
   * count is optional; no count returns a uuid string:
-get_uuid(cb) -> "227eb4ddd1b4b0fd7cdd2e694900bde9"
+  get_uuid(cb) -> 
+    cb(null, "227eb4ddd1b4b0fd7cdd2e694900bde9")
 
   * invoke with one count, get array of id strings of length count
-get_uuid(2,cb) ->
-  [ "227eb4ddd1b4b0fd7cdd2e694900bde9" , "227eb4ddd1b4b0fd7cdd2e694900bde9" ]
+  get_uuid(2,cb) ->
+    cb(null, 
+      ["227eb4ddd1b4b0fd7cdd2e694900bde9","227eb4ddd1b4b0fd7cdd2e694900bde9"])
 
   * invoke w/ n counts, receive array containing n arrays each of length count_
-get_uuid(1,2,1,cb) ->
-  [
-    [ "227eb4ddd1b4b0fd7cdd2e694900bde9" ],
-    [ "227eb4ddd1b4b0fd7cdd2e694900bde9" , "227eb4ddd1b4b0fd7cdd2e694900bde9" ],
-    [ "227eb4ddd1b4b0fd7cdd2e694900bde9" ]
-  ]   
+  get_uuid(1,2,1,cb) ->
+    cb(null,    
+    [ ["227eb4ddd1b4b0fd7cdd2e694900bde9"],
+      ["227eb4ddd1b4b0fd7cdd2e694900bde9","227eb4ddd1b4b0fd7cdd2e694900bde9"],
+      ["227eb4ddd1b4b0fd7cdd2e694900bde9"]
+    ] )   
 */
   function get_uuid() {
     var a_ = arguments;     var a_l = arguments.length;      
