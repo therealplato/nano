@@ -315,10 +315,6 @@ alice.get('rabbit', { revs_info: true }, function(err, body) {
 });
 ```
 
-### db.bulk(docs, [params], [callback])
-
-bulk operations(update/delete/insert) on the database, refer to the 
-[couchdb doc](http://wiki.apache.org/couchdb/http_bulk_document_api).
 
 ### db.list([params], [callback])
 
@@ -340,6 +336,22 @@ bulk fetch of the database documents, `docnames` are specified as per
 [couchdb doc](http://wiki.apache.org/couchdb/http_bulk_document_api).
 additional query string `params` can be specified, `include_doc` is always set
 to `true`.  
+
+```
+alice.fetch({keys:['abc','123']}, {}, function(err, body){
+  if(!err){
+    var docs = [];
+    body.rows.forEach(function(row){ docs.push(row.doc) });
+    callback(null, docs);
+  } else { callback(err) };
+});
+```
+
+### db.bulk(docs, [params], [callback])
+
+bulk operations(update/delete/insert) on the database, refer to the 
+[couchdb doc](http://wiki.apache.org/couchdb/http_bulk_document_api).
+
 
 ## attachments functions
 
